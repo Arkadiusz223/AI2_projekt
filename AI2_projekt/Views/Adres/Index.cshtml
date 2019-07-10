@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AI2_project.Models.Adres>
+
+@{
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Ksiazki/Index");
+    }
+    ViewBag.Title = "Index";
+}
+@if (Session["userID"] != null && (Session["roleID"].Equals(2) || Session["roleID"].Equals(3)))
+{
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Miejscowość)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kod_pocztowy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nr_domu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nr_lokalu)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Miejscowość)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kod_pocztowy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ulica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nr_domu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nr_lokalu)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    Response.Redirect("~/Ksiazki/Index");
+}

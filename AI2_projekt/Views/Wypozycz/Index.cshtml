@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AI2_project.Models.Wypozyczenia>
+
+@{
+    ViewBag.Title = "Wypozyczenia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_rezerwacji)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_wypożyczenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Termin_Zwrotu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wysokość_kary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Karta.Numer_karty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Karta1.Numer_karty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ksiazki.Tytuł)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status1.status_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_rezerwacji)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_wypożyczenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Termin_Zwrotu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wysokość_kary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Karta.Numer_karty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Karta1.Numer_karty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ksiazki.Tytuł)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status1.status_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

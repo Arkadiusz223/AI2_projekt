@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AI2_project.Models.Wypozyczenia>
+
+@{
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Ksiazki/Index");
+    }
+    ViewBag.Title = "Wypożyczone książki";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["userID"] != null)
+{
+<h2>Index</h2>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Ksiazki.Tytuł)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status1.status_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_rezerwacji)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_wypożyczenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Termin_Zwrotu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wysokość_kary)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if ((item.Karta1.Numer_karty).Equals(@Session["userCard"].ToString()))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Ksiazki.Tytuł)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status1.status_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_rezerwacji)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_wypożyczenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Termin_Zwrotu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wysokość_kary)
+        </td>
+    </tr>
+        }
+    }
+
+</table>
+}

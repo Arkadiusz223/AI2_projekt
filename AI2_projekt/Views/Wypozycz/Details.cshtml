@@ -1,0 +1,83 @@
+﻿@model AI2_project.Models.Wypozyczenia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Wypozyczenia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_rezerwacji)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_rezerwacji)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_wypożyczenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_wypożyczenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Termin_Zwrotu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Termin_Zwrotu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wysokość_kary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wysokość_kary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Karta.Numer_karty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Karta.Numer_karty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Karta1.Numer_karty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Karta1.Numer_karty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ksiazki.Tytuł)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ksiazki.Tytuł)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status1.status_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status1.status_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AI2_project.Models.Ksiazki>
+
+@{
+    ViewBag.Title = "Spis Książek";
+}
+
+<h2>Spis książek</h2>
+<h8>Wyświetlane są książki które posiadamy aktualnie na stanie. Jeżeli znalazłeś tą interesującą dla ciebie przyjdź do nas i ja wypożycz.</h8>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tytuł)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rok_wydania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilość_na_stanie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategorie.Kategoria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.Ilość_na_stanie > 0)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tytuł)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Autor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rok_wydania)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilość_na_stanie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategorie.Kategoria)
+        </td>
+        <td>
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.Id })
+        </td>
+        @if (Session["userID"] != null)
+        {
+            <td>
+                @Html.ActionLink(
+     "Wypozycz",
+     "Wypozycz",
+     "Ksiazki",
+     new { confirm = true , id = item.Id },
+     new { onclick = "return confirm('Czy chcesz zarezerwować tą ksiązkę?')" })
+            </td>
+        }
+    </tr>
+        }
+    }
+
+</table>
