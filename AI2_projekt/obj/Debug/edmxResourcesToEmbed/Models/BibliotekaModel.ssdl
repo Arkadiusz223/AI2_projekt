@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotekaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Miejscowość" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Kod_pocztowy" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="Ulica" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nr_domu" Type="int" Nullable="false" />
+    <Property Name="Nr_lokalu" Type="int" />
+  </EntityType>
+  <EntityType Name="Karta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numer_karty" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Wlasciciel" Type="int" Nullable="false" />
+    <Property Name="Rola_karty" Type="int" Nullable="false" />
+    <Property Name="Haslo" Type="varchar" MaxLength="16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategorie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategoria" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ksiazki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tytuł" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Kategoria" Type="int" />
+    <Property Name="Autor" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Opis" Type="varchar" MaxLength="100" />
+    <Property Name="Rok_wydania" Type="date" Nullable="false" />
+    <Property Name="Ilość_na_stanie" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Osoba">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adres" Type="int" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="telefon" Type="varchar" MaxLength="11" />
+    <Property Name="email" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rola" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="status_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wypozyczenia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pracownik" Type="int" />
+    <Property Name="Wypożyczający" Type="int" Nullable="false" />
+    <Property Name="Książka" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Data_rezerwacji" Type="date" />
+    <Property Name="Data_wypożyczenia" Type="date" />
+    <Property Name="Termin_Zwrotu" Type="date" />
+    <Property Name="Wysokość_kary" Type="int" />
+  </EntityType>
+  <Association Name="FK__Karta__Rola_kart__4BAC3F29">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Karta">
+        <PropertyRef Name="Rola_karty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Karta__Wlascicie__4AB81AF0">
+    <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+    <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Osoba">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Karta">
+        <PropertyRef Name="Wlasciciel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ksiazki__Kategor__276EDEB3">
+    <End Role="Kategorie" Type="Self.Kategorie" Multiplicity="0..1" />
+    <End Role="Ksiazki" Type="Self.Ksiazki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ksiazki">
+        <PropertyRef Name="Kategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Osoba__Adres__2D27B809">
+    <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+    <End Role="Osoba" Type="Self.Osoba" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adres">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Osoba">
+        <PropertyRef Name="Adres" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Książ__619B8048">
+    <End Role="Ksiazki" Type="Self.Ksiazki" Multiplicity="1" />
+    <End Role="Wypozyczenia" Type="Self.Wypozyczenia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ksiazki">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wypozyczenia">
+        <PropertyRef Name="Książka" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Praco__5FB337D6">
+    <End Role="Karta" Type="Self.Karta" Multiplicity="0..1" />
+    <End Role="Wypozyczenia" Type="Self.Wypozyczenia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Karta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wypozyczenia">
+        <PropertyRef Name="Pracownik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Statu__628FA481">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Wypozyczenia" Type="Self.Wypozyczenia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wypozyczenia">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wypozycze__Wypoż__60A75C0F">
+    <End Role="Karta" Type="Self.Karta" Multiplicity="1" />
+    <End Role="Wypozyczenia" Type="Self.Wypozyczenia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Karta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wypozyczenia">
+        <PropertyRef Name="Wypożyczający" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BibliotekaModelStoreContainer">
+    <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Karta" EntityType="Self.Karta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategorie" EntityType="Self.Kategorie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ksiazki" EntityType="Self.Ksiazki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Osoba" EntityType="Self.Osoba" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wypozyczenia" EntityType="Self.Wypozyczenia" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Karta__Rola_kart__4BAC3F29" Association="Self.FK__Karta__Rola_kart__4BAC3F29">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Karta" EntitySet="Karta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Karta__Wlascicie__4AB81AF0" Association="Self.FK__Karta__Wlascicie__4AB81AF0">
+      <End Role="Osoba" EntitySet="Osoba" />
+      <End Role="Karta" EntitySet="Karta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ksiazki__Kategor__276EDEB3" Association="Self.FK__Ksiazki__Kategor__276EDEB3">
+      <End Role="Kategorie" EntitySet="Kategorie" />
+      <End Role="Ksiazki" EntitySet="Ksiazki" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Osoba__Adres__2D27B809" Association="Self.FK__Osoba__Adres__2D27B809">
+      <End Role="Adres" EntitySet="Adres" />
+      <End Role="Osoba" EntitySet="Osoba" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Książ__619B8048" Association="Self.FK__Wypozycze__Książ__619B8048">
+      <End Role="Ksiazki" EntitySet="Ksiazki" />
+      <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Praco__5FB337D6" Association="Self.FK__Wypozycze__Praco__5FB337D6">
+      <End Role="Karta" EntitySet="Karta" />
+      <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Statu__628FA481" Association="Self.FK__Wypozycze__Statu__628FA481">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wypozycze__Wypoż__60A75C0F" Association="Self.FK__Wypozycze__Wypoż__60A75C0F">
+      <End Role="Karta" EntitySet="Karta" />
+      <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

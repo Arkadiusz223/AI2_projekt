@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BibliotekaModelStoreContainer" CdmEntityContainer="BibliotekaEntities2">
+    <EntitySetMapping Name="Adres">
+      <EntityTypeMapping TypeName="BibliotekaModel.Adres">
+        <MappingFragment StoreEntitySet="Adres">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Miejscowość" ColumnName="Miejscowość" />
+          <ScalarProperty Name="Kod_pocztowy" ColumnName="Kod_pocztowy" />
+          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+          <ScalarProperty Name="Nr_domu" ColumnName="Nr_domu" />
+          <ScalarProperty Name="Nr_lokalu" ColumnName="Nr_lokalu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Karta">
+      <EntityTypeMapping TypeName="BibliotekaModel.Karta">
+        <MappingFragment StoreEntitySet="Karta">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numer_karty" ColumnName="Numer_karty" />
+          <ScalarProperty Name="Wlasciciel" ColumnName="Wlasciciel" />
+          <ScalarProperty Name="Rola_karty" ColumnName="Rola_karty" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorie">
+      <EntityTypeMapping TypeName="BibliotekaModel.Kategorie">
+        <MappingFragment StoreEntitySet="Kategorie">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ksiazki">
+      <EntityTypeMapping TypeName="BibliotekaModel.Ksiazki">
+        <MappingFragment StoreEntitySet="Ksiazki">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tytuł" ColumnName="Tytuł" />
+          <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+          <ScalarProperty Name="Autor" ColumnName="Autor" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="Rok_wydania" ColumnName="Rok_wydania" />
+          <ScalarProperty Name="Ilość_na_stanie" ColumnName="Ilość_na_stanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Osoba">
+      <EntityTypeMapping TypeName="BibliotekaModel.Osoba">
+        <MappingFragment StoreEntitySet="Osoba">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="BibliotekaModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Rola" ColumnName="Rola" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="BibliotekaModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wypozyczenia">
+      <EntityTypeMapping TypeName="BibliotekaModel.Wypozyczenia">
+        <MappingFragment StoreEntitySet="Wypozyczenia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pracownik" ColumnName="Pracownik" />
+          <ScalarProperty Name="Wypożyczający" ColumnName="Wypożyczający" />
+          <ScalarProperty Name="Książka" ColumnName="Książka" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Data_rezerwacji" ColumnName="Data_rezerwacji" />
+          <ScalarProperty Name="Data_wypożyczenia" ColumnName="Data_wypożyczenia" />
+          <ScalarProperty Name="Termin_Zwrotu" ColumnName="Termin_Zwrotu" />
+          <ScalarProperty Name="Wysokość_kary" ColumnName="Wysokość_kary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
